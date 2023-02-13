@@ -2,14 +2,13 @@
 matlab and python code to register, extract features and compute lineage using simulated annealing
 
 
-
-Lineage Construction
-
 (1)
 
 -- make a configuration directory in the LineageConstructionUsingSimulatedAnnealing directory
 
 mkdir YourConfigName
+
+cd YourConfigName
 
 -- make a configuration file config.yaml (see example: 220827_stack1)
 -- and copy it to the CurrentConfig directory
