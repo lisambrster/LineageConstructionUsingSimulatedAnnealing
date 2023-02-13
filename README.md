@@ -72,15 +72,22 @@ cd ../VisualizeLineage
 sbatch -p ccb RunGraphLineage.sh
 
 -- this makes the full lineage graph here:
+
     Output_Path/LineageVisualizations/Full_Sim_Graph.m -- matlab formatted version of lineage graph
+    
     Output_Path/LineageVisualizations/Full_Sim_Graph.json -- json formatted version of lineage graph
+    
     Output_Path/LineageVisualizations/Full_Sim_Graph.fig -- matlab fig of lineage for visualization
 
 
 sbatch -p ccb RunCheckSplits.sh
 
 -- output point clouds of nuclei for each of the two frames involved in splits with labels/links of matches
+
 Output_Path/LineageVisualizations/Point_Clouds_FrameXX.fig (XX is the frame number)
+
 -- output centroids of nuclei for each of the two frames involved in splits with labels/links of matches
+
 Output_Path/LineageVisualizations/Just_Points_FrameXX.fig (XX is the frame number)
+
 -- where Output_Path is the output_dir in your config file
