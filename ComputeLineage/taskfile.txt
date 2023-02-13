@@ -1,0 +1,2 @@
+./RunUnbalanced.sh job1 -c CurrentConfig -s 76 -e 77 > Results/CurrentConfig_76_77.log
+./RunBalanced1.sh job2 -c CurrentConfig -s 77 -e 99 > Results/CurrentConfig_77_99.log

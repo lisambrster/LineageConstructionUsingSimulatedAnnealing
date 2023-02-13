@@ -1,0 +1,43 @@
+###YAML config file for image registration and lineage tracking
+
+graph_path: '/mnt/ceph/users/lbrown/MouseData/Maddy/220819_stack3/'
+graph_name: 'LineageGraph.json'
+
+image_path: '/mnt/ceph/users/mavdeeva/mouse/data/from_della/YAP-miRFP_membrane_nuclei/220819/stack_3/Raw_data/nuclei/second_acquisition/folder_Cam_Long_%05d.lux/klbOut_Cam_Long_%05d.lux.klb'
+
+start_stage8to16: 24
+nframes_stage8to16: 7
+
+start_stage16to32: 60
+nframes_stage16to32: 20
+# What is the path and the prefix for the embryo names?
+data_path: '/mnt/ceph/users/mavdeeva/mouse/data/from_della/YAP-miRFP_membrane_nuclei/220819/stack_3/nuclear_segmentation/'
+name_of_embryo: 'klbOut_Cam_Long_'
+suffix_for_embryo_alternative: '.lux_SegmentationCorrected.klb'
+suffix_for_embryo: '.lux.label.klb'
+read_type: 0
+
+# Output Directory
+output_dir: '/mnt/ceph/users/lbrown/MouseData/Maddy/220819_stack3/'
+
+# Registeration Options
+register_begin_frame: 0 # (10) Begin with 1 for Lisa's Registration, 0 otherwise. Start with 1 for tracking
+register_end_frame: 141  #  (163 if gt) 164 Last time point for registration - Lisa's registration should have one more frame than this
+register_file_name_prefix: test #newGT # testLB prefix before _transforms.mat
+
+
+# Tracking Options
+track_begin_frame: 6 # Start with 1 for tracking
+track_end_frame: 141  # Last time point for tracking should be one less
+marker_size: 5
+marker_font_size: 10
+track_file_name_prefix: test_track # prefix before _start_end_graph.mat
+
+# Tree coloring options
+intensity_file: 'C:/Users/ab50/Documents/git/lineage_track/test/nanog_tf-1.csv'
+leaf_node: '020'
+begin_labels: ['006_004', '006_005'] # Begin label of intensity line plot
+end_labels: ['020_005', '020_003'] # End label of intensity line plot
+blackout_begin_labels: ['006_002', '006_002'] # Begin label of blackout start
+blackout_end_labels: ['020_007', '020_008'] # End label of blackout ends matched to the begin labels
+

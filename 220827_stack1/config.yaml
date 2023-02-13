@@ -1,0 +1,20 @@
+###YAML config file for image registration and lineage tracking
+
+image_path: '/mnt/ceph/users/mavdeeva/mouse/data/from_della/YAP-miRFP_membrane_nuclei/220827/220827_stack1/Raw_data/nuclei/folder_Cam_Long_%05d.lux/klbOut_Cam_Long_%05d.lux.klb'
+
+data_path: '/mnt/ceph/users/mavdeeva/mouse/data/from_della/YAP-miRFP_membrane_nuclei/220827/220827_stack1/nuclear_segmentation/'
+name_of_embryo: 'klbOut_Cam_Long_'
+suffix_for_embryo_alternative: '.lux_SegmentationCorrected.klb'
+suffix_for_embryo: '.lux.label.klb'
+
+# Output Directory - location of registration, features, and lineage graph
+output_dir: '/mnt/ceph/users/lbrown/MouseData/Maddy/220827_stack1/'
+
+# Registeration Options
+register_begin_frame: 6 # this cannot change once set for registration (must be same for features)
+register_end_frame: 132  #
+register_file_name_prefix: code_test # prefix before _transforms.mat for registration output
+
+marker_size: 5
+marker_font_size: 10
+
