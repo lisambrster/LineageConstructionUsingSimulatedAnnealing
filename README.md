@@ -16,7 +16,7 @@ cp config.yaml ../CurrentConfig/.
 
 (2)
 
-cd RegisterForLineage
+cd RegisterForLineage\n
 sbatch -p ccb RunRegistration.sh
 -- registration usually takes about 10-15 minutes
 -- this will save the registration transforms in your output_dir using your prefix (from your config.yaml)
