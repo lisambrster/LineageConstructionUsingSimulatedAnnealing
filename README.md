@@ -8,9 +8,12 @@ Lineage Construction
 (1)
 
 -- make a configuration directory in the LineageConstruction directory
+
 mkdir YourConfigName
+
 -- make a configuration file config.yaml (see example: 220827_stack1)
 -- and copy it to the CurrentConfig directory
+
 cp config.yaml ../CurrentConfig/.
 
 
@@ -37,7 +40,7 @@ cd ../FeaturesForLineage
 sbatch -p ccb RunFeatures.sh
 
 -- this can take a few hours since it needs to read each of your label and raw images
--- this will make the Features.json file in your Output_Path
+-- this will make the Features.json file in your output_dir
 
 (4)
 
