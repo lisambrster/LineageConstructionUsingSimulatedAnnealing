@@ -7,7 +7,7 @@ Lineage Construction
 
 (1)
 
--- make a configuration directory in the LineageConstruction directory
+-- make a configuration directory in the LineageConstructionUsingSimulatedAnnealing directory
 
 mkdir YourConfigName
 
