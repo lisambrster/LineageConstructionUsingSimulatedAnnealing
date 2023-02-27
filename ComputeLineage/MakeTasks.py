@@ -46,7 +46,7 @@ print('number of excluded labels per frame ',number_of_excludes_per_frame)
 for iframe in range(nframes):
     s = np.asarray(data['mean_intensity'][iframe])
     ind = np.nonzero(s)
-    nNuc = int((ind[0].shape[0])) - 1 - number_of_excludes_per_frame # don't include label 0
+    nNuc = int((ind[0].shape[0])) - number_of_excludes_per_frame # don't include label 0
     if nNuc > 0:
         min_frame = iframe
         break
@@ -54,7 +54,7 @@ for iframe in range(nframes):
 for iframe in range(nframes):
     s = np.asarray(data['mean_intensity'][iframe])
     ind = np.nonzero(s)
-    nNuc = int((ind[0].shape[0])) - 1 - number_of_excludes_per_frame  # don't include label 0
+    nNuc = int((ind[0].shape[0])) - number_of_excludes_per_frame  # don't include label 0
     if nNuc > 0:
         max_frame = iframe
 
@@ -69,7 +69,7 @@ badFrames = []
 for iframe in range(nframes):
     s = np.asarray(data['sphericity'][iframe])
     ind = np.nonzero(s)
-    nNuc = int((ind[0].shape[0])) - 1 - number_of_excludes_per_frame # don't include label 0
+    nNuc = int((ind[0].shape[0])) - number_of_excludes_per_frame # don't include label 0
     #print(nNuc)
     if (nNuc < prevnNuc): # check that number of nuclei always increasing
         print('WARNING: number of nuclei decreased from ',prevnNuc, 'to ',nNuc,' at frame ',iframe)
@@ -96,14 +96,14 @@ for n in range(2,7):
     for iframe in range(nframes):
         s = np.asarray(data['sphericity'][iframe])
         ind = np.nonzero(s)
-        nNuc = int((ind[0].shape[0])) - 1 - number_of_excludes_per_frame# don't include label 0
+        nNuc = int((ind[0].shape[0])) - number_of_excludes_per_frame# don't include label 0
         # last frame where there are 2^n
         if (nNuc == test):
             last_frame[test] = iframe
     for iframe in range(nframes):
         s = np.asarray(data['sphericity'][iframe])
         ind = np.nonzero(s)
-        nNuc = int((ind[0].shape[0])) - 1 - number_of_excludes_per_frame # don't include label 0
+        nNuc = int((ind[0].shape[0])) - number_of_excludes_per_frame # don't include label 0
         if (nNuc == test):
             first_frame[test] = iframe
             break
@@ -146,7 +146,7 @@ PartialSplitSeg = {} # key is number of nuclei at start of segment
 bBeginClean = False
 s = np.asarray(data['volumes'][min_frame])
 ind = np.nonzero(s)
-nNuc = int(ind[0].shape[0]) - 1 - number_of_excludes_per_frame
+nNuc = int(ind[0].shape[0]) - number_of_excludes_per_frame
 if (math.log2(nNuc) == int(math.log2(nNuc))):
         bBeginClean = True
 if (not bBeginClean):
@@ -154,7 +154,7 @@ if (not bBeginClean):
     # doubling ends when nNuc at start_frame reaches a multiple of two
     s = np.asarray(data['volumes'][start_frame])
     ind = np.nonzero(s)
-    nNuc = int(ind[0].shape[0]) - 1 - number_of_excludes_per_frame
+    nNuc = int(ind[0].shape[0]) - number_of_excludes_per_frame
     nPow = math.floor(math.log2(nNuc)) 
     nMult = 2**nPow
     #print('partial doubling from ',start_frame,last_frame[nMult])
@@ -169,7 +169,7 @@ if (not bBeginClean):
 bEndClean = False
 s = np.asarray(data['volumes'][max_frame])
 ind = np.nonzero(s)
-nNuc = int(ind[0].shape[0]) - 1 - number_of_excludes_per_frame
+nNuc = int(ind[0].shape[0]) - number_of_excludes_per_frame
 if (math.log2(nNuc) == int(math.log2(nNuc))):
     bEndClean = True
 
@@ -187,7 +187,7 @@ if (largest_frame_split > largest_frame_nosplit) and (not bEndClean):
     # doubling started when nNuc at partial_end_frame was a multiple of two
     s = np.asarray(data['volumes'][partial_end_frame])
     ind = np.nonzero(s)
-    nNuc = int(ind[0].shape[0]) - 1 - number_of_excludes_per_frame 
+    nNuc = int(ind[0].shape[0]) - number_of_excludes_per_frame 
     nPow = math.floor(math.log2(nNuc))
     nMult = 2**nPow
     start_frame = last_frame[nMult]
