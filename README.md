@@ -61,9 +61,9 @@ sbatch -p ccb -n 8 --ntasks-per-node 1 disBatch --logfile ./disBatchLogs/log.txt
 
 -- a little clean up now is good
 
-rm slurm*
+rm slurm/*
 
-rm *disB*
+rm /*disB/*
 
 (5)
 
