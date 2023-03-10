@@ -55,7 +55,7 @@ for igraph = 3:ngraphs
             end_graph_frame = 0;
             for iNode=1:nNodes
                 frame = val.Nodes(iNode,1);
-                if ((frame + 6) < start_graph_frame)
+                if ((frame + reg_start_frame) < start_graph_frame)
                     start_graph_frame = frame + reg_start_frame;
                 end
                 if (frame > end_graph_frame)
@@ -105,11 +105,15 @@ for igraph = 3:ngraphs
 
             nEdges = size(gg.Edges)
             nNodes = size(gg.Nodes)
+            
+            n = size(sim_name,2);
+            sim_name_out = sim_name(1:(n-5));
+            disp(sim_name_out);
 
             % save the plot of the graph
-            savefig(strcat(sim_dir,sim_name,'.fig'));
+            savefig(strcat(sim_dir,sim_name_out,'.fig'));
             % save as mat file
-            save(strcat(sim_dir,strcat(sim_name),'.mat'),"gg");
+            save(strcat(sim_dir,strcat(sim_name_out),'.mat'),"gg");
 
             % combine with previous graph
             full_sim_graph = CombineGraphs(full_sim_graph,gg);
