@@ -108,7 +108,9 @@ Output_info['costs'] = costs
 
 # output each lineage for input into matlab based on tracks
 mat_graph = OutputGraph(tracks, start_frame)
-fid = open(os.path.join(output_path,'sim_graph_' + str(start_frame) + '_' + str(end_frame) + '.json'),'w')
+start_str = sprintf('%03d',start_frame)
+end_str = sprintf('%03d',end_frame)
+fid = open(os.path.join(output_path,'sim_graph_' + start_str + '_' + end_str + '.json'),'w')
 json.dump(mat_graph,fid, indent = 4)
 fid.close()
 #print(mat_graph['Edges'])
