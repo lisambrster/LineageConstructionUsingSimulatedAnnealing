@@ -91,3 +91,25 @@ Output_Path/LineageVisualizations/Point_Clouds_FrameXX.fig (XX is the frame numb
 Output_Path/LineageVisualizations/Just_Points_FrameXX.fig (XX is the frame number)
 
 -- where Output_Path is the output_dir in your config file
+
+
+OPTIONAL FUNCTIONALITY
+
+To create images and label images which are all registered to each other
+
+cd ../MakeRegisteredImages
+
+sbatch -p ccb run_MakeRegisteredImages.sh
+
+-- this makes three directories in your Output_Path
+
+   Output_Path/MIP_Frames -- MIP (maximal intensity 2D) frames for making animated GIF
+   Output_Path/registered_images -- 3D images all registered to each other with resolution 0.832x0.832x0.832 microns^3
+   Output_Path/registered_label_images -- 3D label all registered toe other with same resolution as above
+   
+python MakeAnimatedGIF.py -c config.yaml
+
+-- this makes the animated GIF from the MIP_Frames in Output_Path/MIP_Frames direction called: RegisteredMIPnuclei_**.gif
+
+You can use these registered images along with the final graph to run Aaron's LineageViewer tool located here: https://github.com/flatironinstitute/lineage_viewer
+
