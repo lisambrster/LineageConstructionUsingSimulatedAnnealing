@@ -111,7 +111,7 @@ sbatch -p ccb run_MakeRegisteredImages.sh
    
 python MakeAnimatedGIF.py -c config.yaml
 
--- this makes the animated GIF from the MIP_Frames in Output_Path/MIP_Frames direction called: RegisteredMIPnuclei_**.gif
+-- this makes the animated GIF from the MIP_Frames here: Output_Path/MIP_Frames/RegisteredMIPnuclei_**.gif
 
 You can use these registered images along with the final graph to run Aaron's LineageViewer tool located here: https://github.com/flatironinstitute/lineage_viewer
 
