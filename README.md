@@ -103,9 +103,11 @@ sbatch -p ccb run_MakeRegisteredImages.sh
 
 -- this makes three directories in your Output_Path
 
-   Output_Path/MIP_Frames -- MIP (maximal intensity 2D) frames for making animated GIF
-   Output_Path/registered_images -- 3D images all registered to each other with resolution 0.832x0.832x0.832 microns^3
-   Output_Path/registered_label_images -- 3D label all registered toe other with same resolution as above
+       Output_Path/MIP_Frames -- MIP (maximal intensity 2D) frames for making animated GIF
+
+       Output_Path/registered_images -- 3D images all registered to each other with resolution 0.832x0.832x0.832 microns^3
+
+       Output_Path/registered_label_images -- 3D label all registered toe other with same resolution as above
    
 python MakeAnimatedGIF.py -c config.yaml
 
