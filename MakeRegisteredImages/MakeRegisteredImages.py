@@ -45,9 +45,9 @@ if __name__ == '__main__':
                         help='end of sequence - integer')
     args = parser.parse_args()
 
-config_path = '/mnt/home/lbrown/LineageConstruction/CurrentConfig/';
+config_path = '/mnt/home/lbrown/LineageConstruction/';
 
-config_name = args.config_name
+config_name = args.config_name + '/config.yaml'
 
 print('Config ',config_name)
 with open(os.path.join(config_path,config_name), 'r') as file:
@@ -83,6 +83,8 @@ end_frame = config_opts['register_end_frame']
 print('start, end ',start_frame,end_frame)
 transform_path = out_path #os.path.dirname(label_path)
 transform_name = config_opts['register_file_name_prefix'] + '_transforms.json'
+print(transform_path)
+print(transform_name)
 
 # read in registration transforms
 embryo_path = transform_path
@@ -133,15 +135,18 @@ for iframe in range(start_frame,end_frame): #
     if bLabels:
         # read label image - 100_masks_mi_0001.tif
         label_fullname = label_path % iframe
+        alt_suffix = '.lux_SegmentationCorrected.klb'
+        label_altname = label_fullname[:-14] + alt_suffix ## was -10
         # if doesn't exist - try
         #lux_suffix_for_embryo_alternative = '.lux_SegmentationCorrected.tif';
         #suffix_for_embryo_alternative = '.SegmentationCorrected.tif';
-        alt_suffix = '.lux_SegmentationCorrected.klb'
+        #klbOut_Cam_Long_00084.lux_SegmentationCorrected.klb
+
         print(label_fullname)
-        if (os.path.exists(label_fullname)):
-            label_fullname = label_fullname
+        if (os.path.exists(label_altname)):
+            label_fullname = label_altname
         else:
-            label_fullname = label_fullname[:-14] + alt_suffix ## was -10
+            label_fullname = label_fullname
         print(label_fullname)
         suffix = label_fullname[-3:]
         if (suffix == 'klb'):
@@ -159,7 +164,7 @@ for iframe in range(start_frame,end_frame): #
                 label_fullname = label_fullname[:-8] + lux_suffix_for_embryo_alternative
             label_img = tiff.imread(label_fullname)
         #label_img = np.ascontiguousarray(label_img)
-        #print('label img shape ',label_img.shape)
+        print('label img shape ',label_img.shape)
         #print('label type ',type(label_img[0,0,0]))
         #list_nuclei = np.unique(label_img)
         #print('number of labels',len(list_nuclei))
@@ -265,7 +270,7 @@ for iframe in range(start_frame,end_frame): #
 
     #reg_img_swap = np.ascontiguousarray(reg_img_swap)
     #pyklb.writefull(reg_img_swap,os.path.join(new_image_path,'image_reg_' + frame_str + '.klb'))
-    tiff.imwrite(os.path.join(new_image_path,img_type + '_reg8_' + frame_str + '.tif'),reg_img_swap)
+    tiff.imwrite(os.path.join(new_image_path,img_type + '_reg8_' + frame_str + '.tif'),reg_img_swap << 4)
     if bLabels:
         #reg_label_swap = np.ascontiguousarray(reg_label_swap)
         #pyklb.writefull(reg_label_swap, os.path.join(new_label_path, 'label_reg_' + frame_str + '.klb'))
@@ -273,7 +278,26 @@ for iframe in range(start_frame,end_frame): #
 
     # now make max intensity projection image
     max_proj_img = np.max(reg_img, axis=1)
-    cv2.imwrite(os.path.join(MIP_path,'MIP_Y8' + img_type + '_' + frame_str + '.jpg'), max_proj_img)
+
+    # shift right - so intensity in range similar to original
+    #max_proj_img = max_proj_img << 4
+
+    # normalize intensity for viewing
+    '''
+    from csbdeep.utils import normalize
+    from csbdeep.data import norm_percentiles
+
+    print('max proj image value before normalization', np.max(max_proj_img))
+    max_proj_img = max_proj_img / np.max(max_proj_img)
+    max_proj_img = max_proj_img.astype(np.float32)
+
+    a = np.percentile(max_proj_img, 0)
+    b = np.percentile(max_proj_img, 100)
+    print(a, b)
+    max_proj_img = np.clip(max_proj_img, np.percentile(max_proj_img, 0),
+                        np.percentile(max_proj_img, 100))
+                        '''
+    cv2.imwrite(os.path.join(MIP_path,'MIP_Y8' + img_type + '_' + frame_str + '.jpg'), max_proj_img << 4)
 
 
 
